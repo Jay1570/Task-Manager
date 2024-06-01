@@ -67,16 +67,17 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-analytics:22.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:19.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-analytics:22.0.1")
+    implementation("com.google.firebase:firebase-crashlytics:19.0.1")
     implementation("com.google.firebase:firebase-auth:23.0.0")
     implementation("com.google.firebase:firebase-firestore:25.0.0")
-    implementation("com.google.firebase:firebase-perf:21.0.0")
+    implementation("com.google.firebase:firebase-perf:21.0.1")
     implementation("com.google.firebase:firebase-config:22.0.0")
     implementation("com.google.firebase:firebase-messaging:24.0.0")
     implementation(libs.hilt.android)
     implementation(libs.accompanist.permissions)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp("com.google.dagger:hilt-compiler:2.51.1")
 
 
