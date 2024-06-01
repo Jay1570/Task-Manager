@@ -6,6 +6,6 @@ fun Task?.hasDueDate(): Boolean {
     return this?.dueDate.orEmpty().isNotBlank()
 }
 
-fun Task?.hasDueTIme(): Boolean {
+fun Task?.hasDueTime(): Boolean {
     return this?.dueTime.orEmpty().isNotBlank()
 }

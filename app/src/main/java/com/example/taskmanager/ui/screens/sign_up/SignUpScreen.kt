@@ -21,7 +21,14 @@ import com.example.taskmanager.common.composable.PasswordField
 import com.example.taskmanager.common.composable.RepeatPasswordField
 import com.example.taskmanager.common.ext.basicButton
 import com.example.taskmanager.common.ext.fieldModifier
+import com.example.taskmanager.ui.navigation.NavigationDestination
 import com.example.taskmanager.ui.theme.TaskManagerTheme
+
+
+object SignUpDestination : NavigationDestination {
+    override val route: String = "login"
+    override val titleRes: Int = R.string.create_account
+}
 
 @Composable
 fun SignUpScreen(
@@ -50,7 +57,7 @@ fun SignUpScreenContent(
 ) {
     val fieldModifier = Modifier.fieldModifier()
 
-    BasicToolBar(title = R.string.create_account)
+    BasicToolBar(title = SignUpDestination.titleRes)
 
     Column(
         modifier = Modifier

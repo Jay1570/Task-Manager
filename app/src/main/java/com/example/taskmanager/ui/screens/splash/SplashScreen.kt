@@ -20,9 +20,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.taskmanager.R
 import com.example.taskmanager.common.composable.BasicButton
 import com.example.taskmanager.common.ext.basicButton
+import com.example.taskmanager.ui.navigation.NavigationDestination
 import com.example.taskmanager.ui.theme.TaskManagerTheme
 import kotlinx.coroutines.delay
 
+object SplashDestination : NavigationDestination {
+    override val route: String = "splash"
+    override val titleRes: Int = R.string.app_name
+}
 
 private const val SPLASH_TIMEOUT = 1000L
 @Composable

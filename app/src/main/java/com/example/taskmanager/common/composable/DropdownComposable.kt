@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 fun DropdownContextMenu(
     options: List<String>,
     modifier: Modifier,
-    onActionCLick: (String) -> Unit
+    onActionClick: (String) -> Unit
 ) {
     var isExpanded by remember { mutableStateOf(true) }
 
@@ -55,7 +55,7 @@ fun DropdownContextMenu(
                     text = { Text(text = selectionOption) },
                     onClick = {
                         isExpanded = false
-                        onActionCLick(selectionOption)
+                        onActionClick(selectionOption)
                     }
                 )
             }

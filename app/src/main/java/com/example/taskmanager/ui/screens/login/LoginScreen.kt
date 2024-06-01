@@ -21,7 +21,14 @@ import com.example.taskmanager.common.composable.PasswordField
 import com.example.taskmanager.common.ext.basicButton
 import com.example.taskmanager.common.ext.fieldModifier
 import com.example.taskmanager.common.ext.textButton
+import com.example.taskmanager.ui.navigation.NavigationDestination
 import com.example.taskmanager.ui.theme.TaskManagerTheme
+
+
+object LoginDestination : NavigationDestination {
+    override val route: String = "login"
+    override val titleRes: Int = R.string.login_details
+}
 
 @Composable
 fun LoginScreen(
@@ -48,7 +55,7 @@ fun LoginScreenContent(
     onForgotPasswordClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    BasicToolBar(title = R.string.login_details)
+    BasicToolBar(title = LoginDestination.titleRes)
     Column(
         modifier = modifier
             .fillMaxWidth()

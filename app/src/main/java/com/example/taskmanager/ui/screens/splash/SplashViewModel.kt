@@ -1,12 +1,11 @@
 package com.example.taskmanager.ui.screens.splash
 
 import androidx.compose.runtime.mutableStateOf
-import com.example.taskmanager.SPLASH_SCREEN
-import com.example.taskmanager.TASKS_SCREEN
 import com.example.taskmanager.model.service.AccountService
 import com.example.taskmanager.model.service.ConfigurationService
 import com.example.taskmanager.model.service.LogService
 import com.example.taskmanager.ui.screens.TaskViewModel
+import com.example.taskmanager.ui.screens.tasks.TasksDestination
 import com.google.firebase.auth.FirebaseAuthException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -27,7 +26,7 @@ class SplashViewModel @Inject constructor(
 
     fun onAppStart(openAndPopUp: (String, String) -> Unit) {
         showError.value = false
-        if (accountService.hasUser) openAndPopUp(TASKS_SCREEN, SPLASH_SCREEN)
+        if (accountService.hasUser) openAndPopUp(TasksDestination.route, SplashDestination.route)
         else createAnonymousAccount(openAndPopUp)
     }
 
@@ -39,7 +38,7 @@ class SplashViewModel @Inject constructor(
                 showError.value = true
                 throw ex
             }
-            openAndPopUp(TASKS_SCREEN, SPLASH_SCREEN)
+            openAndPopUp(TasksDestination.route, SplashDestination.route)
         }
     }
 }
