@@ -3,6 +3,7 @@ package com.example.taskmanager.ui.screens.tasks
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
+import com.example.taskmanager.EDIT_TASK_SCREEN
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.model.service.ConfigurationService
 import com.example.taskmanager.model.service.LogService
@@ -42,7 +43,7 @@ class TasksViewModel @Inject constructor(
         launchCatching { storageService.update(task.copy(completed = !task.completed)) }
     }
 
-    fun onAddClick(openScreen: (String) -> Unit) = openScreen(EditTaskDestination.route)
+fun onAddClick(openScreen: (String) -> Unit) = openScreen(EDIT_TASK_SCREEN)
 
     fun onSettingsClick(openScreen: (String) -> Unit) = openScreen(SettingsDestination.route)
 
@@ -56,7 +57,7 @@ class TasksViewModel @Inject constructor(
 
     fun onTaskActionClick(openScreen: (String) -> Unit, task: Task, action: String) {
         when (TaskActionOption.getByTitle(action)) {
-            TaskActionOption.EditTask -> openScreen("${EditTaskDestination.route}${EditTaskDestination.taskIdArgs}")
+            TaskActionOption.EditTask -> openScreen("${EditTaskDestination.route}?${EditTaskDestination.TASK_ID}={${task.id}}")
             TaskActionOption.DeleteTask -> onDeleteTaskClick(task)
             TaskActionOption.ToggleFlag -> onFlagTaskCLick(task)
         }

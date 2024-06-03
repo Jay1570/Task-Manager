@@ -2,6 +2,7 @@ package com.example.taskmanager.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
@@ -54,10 +55,11 @@ fun Navigation(
         }
 
         composable(
-            route = "${EditTaskDestination.route}${EditTaskDestination.taskIdArgs}",
-            arguments = listOf(navArgument(EditTaskDestination.taskId) {
+            route = EditTaskDestination.routeWithArg,
+            arguments = listOf(navArgument(EditTaskDestination.TASK_ID) {
                 nullable = true
                 defaultValue = null
+                type = NavType.StringType
             })
         ) {
             EditTasksScreen(popUpScreen = { appState.popUp() })

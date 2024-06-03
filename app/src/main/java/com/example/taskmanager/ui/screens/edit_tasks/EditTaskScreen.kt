@@ -31,13 +31,12 @@ import com.example.taskmanager.ui.navigation.NavigationDestination
 import com.example.taskmanager.ui.theme.TaskManagerTheme
 import java.util.Calendar
 
-object EditTaskDestination : NavigationDestination {
+object EditTaskDestination : NavigationDestination{
     override val route = "EditTaskScreen"
-    override val titleRes = R.string.edit_task
-    val taskId = "taskId"
-    val taskIdArgs = "?$taskId={$taskId}"
+    override val titleRes: Int = R.string.edit_task
+    val TASK_ID = "taskId"
+    val routeWithArg = "$route?$TASK_ID={$TASK_ID}"
 }
-
 @Composable
 fun EditTasksScreen(
     popUpScreen: () -> Unit,

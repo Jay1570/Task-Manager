@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.example.taskmanager.TASK_ID
 import com.example.taskmanager.common.ext.idFromParameter
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.model.service.LogService
@@ -27,7 +28,7 @@ class EditTaskViewModel @Inject constructor(
     val task = mutableStateOf(Task())
 
     init {
-        val taskId = savedStateHandle.get<String>(EditTaskDestination.taskId)
+        val taskId = savedStateHandle.get<String>(TASK_ID)
         if (taskId != null) {
             launchCatching {
                 task.value = storageService.getTask(taskId.idFromParameter()) ?: Task()
