@@ -7,13 +7,13 @@ enum class Priority {
     High;
 
     companion object {
-        fun getByteName(name: String?): Priority {
-            values().forEach { priority -> if (name == priority.name) return priority }
+        fun getByName(name: String?): Priority {
+            entries.forEach { priority -> if (name == priority.name) return priority }
             return None
         }
         fun getOptions(): List<String> {
             val options = mutableListOf<String>()
-            values().forEach { priority -> options.add(priority.name) }
+            entries.forEach { priority -> options.add(priority.name) }
             return options
         }
     }

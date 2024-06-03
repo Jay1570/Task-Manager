@@ -9,6 +9,7 @@ import com.example.taskmanager.common.snackbar.SnackbarManager
 import com.example.taskmanager.model.service.AccountService
 import com.example.taskmanager.model.service.LogService
 import com.example.taskmanager.ui.screens.TaskViewModel
+import com.example.taskmanager.ui.screens.settings.SettingsDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -56,7 +57,8 @@ class SignUpViewModel @Inject constructor(
         }
 
         launchCatching {
-            //TODO
+            accountService.linkAccount(email, password)
+            openAndPopUp(SettingsDestination.route, SignUpDestination.route)
         }
     }
 }

@@ -3,6 +3,7 @@
 package com.example.taskmanager.common.composable
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -33,8 +34,7 @@ fun DropdownContextMenu(
     modifier: Modifier,
     onActionClick: (String) -> Unit
 ) {
-    var isExpanded by remember { mutableStateOf(true) }
-
+    var isExpanded by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(
         expanded = isExpanded,
         onExpandedChange = { isExpanded = !isExpanded },
@@ -43,7 +43,7 @@ fun DropdownContextMenu(
         Icon(
             imageVector = Icons.Default.MoreVert,
             contentDescription = "More",
-            modifier = Modifier.padding(8.dp,0.dp)
+            modifier = Modifier.padding(8.dp,0.dp).menuAnchor()
         )
         ExposedDropdownMenu(
             expanded = isExpanded,
@@ -69,17 +69,17 @@ fun DropdownSelector(
     options: List<String>,
     selection: String,
     modifier: Modifier,
-    onNewValue: (String) -> Unit
+    onNewValue: (String) -> Unit,
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
         expanded = isExpanded,
-        modifier = modifier,
+        modifier = modifier.clickable { isExpanded = !isExpanded },
         onExpandedChange = { isExpanded = !isExpanded }
     ) {
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().menuAnchor(),
             readOnly = true,
             value = selection,
             onValueChange = {},
@@ -90,7 +90,7 @@ fun DropdownSelector(
         
         ExposedDropdownMenu(
             expanded = isExpanded,
-            onDismissRequest = { isExpanded = false }
+            onDismissRequest = { isExpanded = false },
         ) {
             options.forEach {selectionOption ->
                 DropdownMenuItem(

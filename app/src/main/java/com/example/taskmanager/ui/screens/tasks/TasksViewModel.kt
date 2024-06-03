@@ -1,8 +1,8 @@
 package com.example.taskmanager.ui.screens.tasks
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import com.example.taskmanager.EDIT_TASK_SCREEN
-import com.example.taskmanager.SETTINGS_SCREEN
+import androidx.lifecycle.viewModelScope
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.model.service.ConfigurationService
 import com.example.taskmanager.model.service.LogService
@@ -11,7 +11,7 @@ import com.example.taskmanager.ui.screens.TaskViewModel
 import com.example.taskmanager.ui.screens.edit_tasks.EditTaskDestination
 import com.example.taskmanager.ui.screens.settings.SettingsDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,12 +21,21 @@ class TasksViewModel @Inject constructor(
     private val configurationService: ConfigurationService
 ) : TaskViewModel(logService) {
 
+
+    val tasks = storageService.tasks
     val options = mutableStateOf<List<String>>(listOf())
 
-    val tasks = emptyFlow<List<Task>>()
+    init {
+        viewModelScope.launch {
+            tasks.collect { fetchedTasks ->
+                Log.d("TasksViewModel", "Loaded tasks: ${fetchedTasks.size}")
+            }
+        }
+    }
 
     fun loadTaskOptions() {
-        //TODO
+        val hasEditOption = configurationService.isShowTaskEditButtonConfig
+        options.value = TaskActionOption.getOptions(hasEditOption)
     }
 
     fun onTaskCheckChange(task: Task) {
@@ -47,7 +56,7 @@ class TasksViewModel @Inject constructor(
 
     fun onTaskActionClick(openScreen: (String) -> Unit, task: Task, action: String) {
         when (TaskActionOption.getByTitle(action)) {
-            TaskActionOption.EditTask -> openScreen(EditTaskDestination.routeWithArgs)
+            TaskActionOption.EditTask -> openScreen("${EditTaskDestination.route}${EditTaskDestination.taskIdArgs}")
             TaskActionOption.DeleteTask -> onDeleteTaskClick(task)
             TaskActionOption.ToggleFlag -> onFlagTaskCLick(task)
         }

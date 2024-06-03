@@ -1,6 +1,5 @@
 package com.example.taskmanager.model.service.impl
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import com.example.taskmanager.model.User
 import com.example.taskmanager.model.service.AccountService
 import com.example.taskmanager.model.service.trace

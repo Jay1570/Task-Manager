@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.taskmanager"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -78,6 +78,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.accompanist.permissions)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     ksp("com.google.dagger:hilt-compiler:2.51.1")
 
 

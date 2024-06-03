@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text2.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,7 +25,7 @@ import com.example.taskmanager.ui.theme.TaskManagerTheme
 
 
 object SignUpDestination : NavigationDestination {
-    override val route: String = "login"
+    override val route: String = "sign_up"
     override val titleRes: Int = R.string.create_account
 }
 
